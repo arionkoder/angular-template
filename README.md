@@ -1,27 +1,44 @@
-# AngularTemplate
+# Angular Template
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.4.
+El fin de este template es brindar una serie de lineamientos y configuraciones iniciales para todos los proyectos que se construyan con Angular.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Estructura de Archivos y Carpetas
 
-## Code scaffolding
+En Angular existen diversas formas de estructurar una aplicación. Para este template se utilizó una organzación de archivos y carpetas que permite ser escable y flexible.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Se divide en las siguientes secciones:
 
-## Build
+* Core: Funcionalidades e interfaces que se instancian por unica vez en la aplicación. En esta carpeta no deben existir componentes visuales ni lógica de negocio.
+* Features: Aquí se ubica la lógica de negocio. Contiene módulos, componentes, servicios y otros bloques de código para la construcción de un Feature de negocio en particular. Cada módulo es cargado de forma lazy en el routing principal.
+* Shared: Esta carpeta debe contener todos los componentes reutilizables de la app. Cada componente no debe esta atado a una lógica de negocio y en su lugar ser lo mas abstracto posible.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Core
+La carpeta Core es el lugar donde se colocan los servicios singleton, los tokens de inyección, las Constantes, las configuraciones de la aplicación, los Pipes, los Http Interceptos, las Guards, el servicio de autenticación, las utilidades, etc. que se utilizarán en toda la aplicación. Si hay algo que es específico para la propia aplicación, el despliegue, CI/CD, API, y el desarrollador - es probable que pertenezca al núcleo.
 
-## Running unit tests
+### Features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Las Features de negocio se ubican en esta carpeta donde cada modulo esta en su subcarpeta.
+Cada feature module puede a su vez contener componentes, directivas, pipes, servicios, interfaces, enums, utilidades, etc. La idea es mantener las cosas cerca. Por lo tanto, un Pipe, que sólo se utiliza en un solo módulo  no debe ser definida en el ámbito global o dentro de Core. Lo mismo ocurre con cualquier otro bloque de construcción de Angular requerido únicamente por este módulo.
 
-## Running end-to-end tests
+### Shared
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Considerá el Shared module como una libreria de componentes de UI. Estos no deben ser específicos para una sola función de negocio sino que deberian ser Dumb components con el fin de poder tomar todos los componentes, soltarlos en otro proyecto Angular, y esperar que funcionen (dado que las dependencias se cumplen). 
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Conventional Commits
+
+Este template tiene como dependencia a `@commitlint/cli` y `@commitlint/config-conventional` para el manejo de Conventional Commits.
+
+### Que es Conventional Commit?
+
+La especificación [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) es una convención sobre los mensajes de commit de GIT. Proporciona un conjunto de reglas sencillas para crear un historial de commit explícito, lo que facilita la escritura de herramientas automatizadas sobre él (ej: mantener un CHANGELOG cada vez que se hace release). Esta convención encaja con [SemVer](https://semver.org/) (Semantic Versioning), al describir las características, correcciones y cambios de ruptura realizados en los mensajes de confirmación. 
+
+
+
+## Buenas prácticas
+
+En la medida de lo posible siempre se recomienda mantener actualizada las versiones de Angular. Esto permite no solo la correccion de errores y seguridad del framework sino tambien optimizaciones del mismo.
+
+Por otro lado el seguimiento de buenas practicas en cuanto a escritura del codigo permite que el mismo sea mantenible, performante y escalable.
+Para ello recomendamos leer el siguiente artículo: [https://www.tatvasoft.com/blog/angular-optimization-and-best-practices](https://www.tatvasoft.com/blog/angular-optimization-and-best-practices)
