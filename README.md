@@ -1,44 +1,41 @@
 # Angular Template
 
-El fin de este template es brindar una serie de lineamientos y configuraciones iniciales para todos los proyectos que se construyan con Angular.
+The purpose of this template is to provide a set of guidelines and initial configurations for all projects built with Angular.
 
 
-## Estructura de Archivos y Carpetas
+## Files and Folders structure
 
-En Angular existen diversas formas de estructurar una aplicación. Para este template se utilizó una organzación de archivos y carpetas que permite ser escable y flexible.
+In Angular there are several ways to structure an application. For this template we used an organization of files and folders that allows to be scalable and flexible.
 
-Se divide en las siguientes secciones:
+It is divided into the following sections:
 
-* Core: Funcionalidades e interfaces que se instancian por unica vez en la aplicación. En esta carpeta no deben existir componentes visuales ni lógica de negocio.
-* Features: Aquí se ubica la lógica de negocio. Contiene módulos, componentes, servicios y otros bloques de código para la construcción de un Feature de negocio en particular. Cada módulo es cargado de forma lazy en el routing principal.
-* Shared: Esta carpeta debe contener todos los componentes reutilizables de la app. Cada componente no debe esta atado a una lógica de negocio y en su lugar ser lo mas abstracto posible.
+* Core: Functionalities and interfaces that are instantiated only once in the application. In this folder there should be no visual components or business logic.
+* Features: Business logic is located here. It contains modules, components, services and other code blocks for the construction of a particular business Feature. Each module is loaded in a lazy way in the main routing.
+* Shared: This folder should contain all the reusable components of the app. Each component should not be tied to a business logic and instead be as abstract as possible.
 
 ### Core
-La carpeta Core es el lugar donde se colocan los servicios singleton, los tokens de inyección, las Constantes, las configuraciones de la aplicación, los Pipes, los Http Interceptos, las Guards, el servicio de autenticación, las utilidades, etc. que se utilizarán en toda la aplicación. Si hay algo que es específico para la propia aplicación, el despliegue, CI/CD, API, y el desarrollador - es probable que pertenezca al núcleo.
+The Core folder is where you place the singleton services, injection tokens, Constants, application configurations, Pipes, Http Intercepts, Guards, authentication service, utilities, etc. that will be used throughout the application. If there is something that is specific to the application itself, the deployment, CI/CD, API, and developer - it likely belongs in the core.
 
 ### Features
 
-Las Features de negocio se ubican en esta carpeta donde cada modulo esta en su subcarpeta.
-Cada feature module puede a su vez contener componentes, directivas, pipes, servicios, interfaces, enums, utilidades, etc. La idea es mantener las cosas cerca. Por lo tanto, un Pipe, que sólo se utiliza en un solo módulo  no debe ser definida en el ámbito global o dentro de Core. Lo mismo ocurre con cualquier otro bloque de construcción de Angular requerido únicamente por este módulo.
+The business features are located in this folder where each module is in its subfolder.
+Each feature module can in turn contain components, directives, pipes, services, interfaces, enums, utilities, etc. The idea is to keep things close together. Therefore, a Pipe, which is only used in a single module should not be defined in the global scope or within Core. The same goes for any other Angular building blocks required only by this module.
 
 ### Shared
 
-Considerá el Shared module como una libreria de componentes de UI. Estos no deben ser específicos para una sola función de negocio sino que deberian ser Dumb components con el fin de poder tomar todos los componentes, soltarlos en otro proyecto Angular, y esperar que funcionen (dado que las dependencias se cumplen). 
-
+Consider the Shared module as a library of UI components. These should not be specific to a single business function but should be dumb components in order to be able to take all the components, drop them into another Angular project, and expect them to work (given that the dependencies are met). 
 
 ## Conventional Commits
 
-Este template tiene como dependencia a `@commitlint/cli` y `@commitlint/config-conventional` para el manejo de Conventional Commits.
+This template is configured with `@commitlint/cli` and `@commitlint/config-conventional` for handling Conventional Commits.
 
-### Que es Conventional Commit?
+### What is Conventional Commit?
 
-La especificación [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) es una convención sobre los mensajes de commit de GIT. Proporciona un conjunto de reglas sencillas para crear un historial de commit explícito, lo que facilita la escritura de herramientas automatizadas sobre él (ej: mantener un CHANGELOG cada vez que se hace release). Esta convención encaja con [SemVer](https://semver.org/) (Semantic Versioning), al describir las características, correcciones y cambios de ruptura realizados en los mensajes de confirmación. 
+The [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) specification is a convention for GIT commit messages. It provides a simple set of rules for creating an explicit commit history, which makes it easy to write automated tools on top of it (e.g., maintain a CHANGELOG each time a release is made). This convention dovetails with [SemVer](https://semver.org/) (Semantic Versioning), by describing features, fixes and breaking changes made in commit messages. 
 
+## Best practices
 
+As far as possible it is always recommended to keep Angular versions up to date. This allows not only bug fixes and framework security but also framework optimizations.
 
-## Buenas prácticas
-
-En la medida de lo posible siempre se recomienda mantener actualizada las versiones de Angular. Esto permite no solo la correccion de errores y seguridad del framework sino tambien optimizaciones del mismo.
-
-Por otro lado el seguimiento de buenas practicas en cuanto a escritura del codigo permite que el mismo sea mantenible, performante y escalable.
-Para ello recomendamos leer el siguiente artículo: [https://www.tatvasoft.com/blog/angular-optimization-and-best-practices](https://www.tatvasoft.com/blog/angular-optimization-and-best-practices)
+On the other hand, following good practices in terms of writing the code allows it to be maintainable, performant and scalable.
+For this we recommend reading the following article: [https://www.tatvasoft.com/blog/angular-optimization-and-best-practices](https://www.tatvasoft.com/blog/angular-optimization-and-best-practices)
